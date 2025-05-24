@@ -54,57 +54,15 @@ void tokenizer(char *text)
 	while(text[i] != '\0') {
 		struct Token token;
 		switch(text[i]) {
-			case '"':
-				token.type = 4;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break;
-			case '[':
-				token.type = 0;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break;
-			case ']':
-				token.type = 2;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break;
-			case '=':
-				token.type = 3;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break;
-			case ';':
-				token.type = 5;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break;
-			case '`':
-				token.type = 6;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break;
-			case ' ':
-				token.type = 7;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break;
-			default:
-				token.type = 1;
-				token.value = text[i];
-				tokens[i_token] = token;
-				i_token++;
-				break; 
-		}
-		//display_token(token);
-		i++;
+			case '"':token.type = 4;token.value = text[i];tokens[i_token] = token;i_token++;break;
+			case '[':token.type = 0;token.value = text[i];tokens[i_token] = token;i_token++;break;
+			case ']':token.type = 2;token.value = text[i];tokens[i_token] = token;i_token++;break;
+			case '=':token.type = 3;token.value = text[i];tokens[i_token] = token;i_token++;break;
+			case ';':token.type = 5;token.value = text[i];tokens[i_token] = token;i_token++;break;
+			case '`':token.type = 6;token.value = text[i];tokens[i_token] = token;i_token++;break;
+			case ' ':token.type = 7;token.value = text[i];tokens[i_token] = token;i_token++;break;
+			default:token.type = 1;token.value = text[i];tokens[i_token] = token;i_token++;break; 
+		}i++;
 	}
 }
 int main() {
