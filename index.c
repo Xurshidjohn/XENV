@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-const char *text = "[font] = `Menlo`;";
+const char *text = "[font] = `Menlo`;[salom] = `salom`";
 const char words[100];
 
 typedef enum TokenType {
@@ -24,7 +24,6 @@ t_token tokens[200] = {};
 int i_token = 0;
 void display_token(t_token token)
 {
-
 	printf("<Token value='%c' type='%d'>\n", token.value, token.type);
 }
 
@@ -36,14 +35,13 @@ char *get_keys() {
 		if(tokens[i].value == '[') {
 			flag = 1;
 		}
-
 		if(tokens[i-1].value == ']') {
+			printf("%s\n", key);
 			flag = 0;
+			key_i = 0;
 		}
-		
 		if(flag == 1) {
 			key[key_i] = tokens[i].value;
-			printf("%c", key[key_i]);
 			key_i++;
 		}
 	}
