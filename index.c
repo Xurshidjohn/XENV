@@ -1,6 +1,7 @@
 #include <stdio.h>
-
-const char *text = "[ font ] = `Jetbrains Mono`";
+#include <stdlib.h>
+#include <ctype.h>
+const char *text = "[font] = `Jetbrains Mono`;";
 const char words[100];
 
 typedef enum TokenType {
@@ -9,24 +10,65 @@ typedef enum TokenType {
 	BRACK_R = 2,
 	EQUAL = 3,
 	QUOTE = 4,
-	COLON = 5
+	COLON = 5,
+	BACK_TAG = 6,
+	SPACE = 7
 } t_type;
 
-struct Token {
+typedef struct Token {
 	t_type type;
-	char *value;
-};
+	char value;
+} t_token;
 
-void tokenizer(char *text){
+void display_token(t_token token)
+{
+
+	printf("<Token value='%c' type='%d'>\n", token.value, token.type);
+}
+
+void tokenizer(char *text)
+{
 	int i = 0;
 	while(text[i] != '\0') {
-		printf("%c\n", text[i]);
+		struct Token token;
+		switch(text[i]) {
+			case '"':
+				token.type = 4;
+				token.value = text[i];
+				break;
+			case '[':
+				token.type = 0;
+				token.value = text[i];
+				break;
+			case ']':
+				token.type = 2;
+				token.value = text[i];
+				break;
+			case '=':
+				token.type = 3;
+				token.value = text[i];
+				break;
+			case ';':
+				token.type = 5;
+				token.value = text[i];
+				break;
+			case '`':
+				token.type = 6;
+				token.value = text[i];
+				break;
+			case ' ':
+				token.type = 7;
+				token.value = text[i];
+				break;
+			default:
+				token.type = 1;
+				token.value = text[i];
+				break; 
+		}
+		display_token(token);
 		i++;
 	}
 }
-
-
-
 
 int main() {
 	tokenizer(text);
